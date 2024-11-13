@@ -1,0 +1,240 @@
+{% block content %}
+<div class="container">
+    <h2>Edit Workout</h2>
+    
+    <div class="workout-form">
+        <input type="text" id="workout-name" value="{{ workout.name }}" class="form-control">
+        <textarea id="workout-description" class="form-control">{{ workout.description }}</textarea>
+        <input type="number" id="workout-difficulty" value="{{ workout.difficulty_level }}" 
+               class="form-control" min="1" max="5">
+        <input type="number" id="workout-duration" value="{{ workout.duration_minutes }}" 
+               class="form-control">
+        <button onclick="updateWorkout()" class="btn btn-primary">Save Changes</button>
+    </div>
+
+    <div class="current-exercises">
+        <h3>Current Exercises</h3>
+        <div class="exercise-list">
+            {% for workout_exercise in workout_exercises %}
+            <div class="exercise-item" id="exercise-{{ workout_exercise.exercise.id }}">
+                <h4>{{ workout_exercise.exercise.name }}</h4>
+                <p>Sets: {{ workout_exercise.sets }}</p>
+                <p>Reps: {{ workout_exercise.reps }}</p>
+                <p>Rest: {{ workout_exercise.rest_time_seconds }}s</p>
+                <p>Order: {{ workout_exercise.order }}</p>
+                <p>Calories: {{ workout_exercise.calories }}</p>
+                <button onclick="deleteExercise('{{ workout.id }}', '{{ workout_exercise.exercise.id }}')" 
+                        class="btn btn-danger">Remove</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="add-exercises">
+        <h3>Add More Exercises</h3>
+        <div class="exercise-grid">
+            {% for exercise in exercises %}
+            <div class="exercise-card" onclick="showExerciseModal('{{ exercise.id }}', '{{ exercise.name }}')">
+                <h4>{{ exercise.name }}</h4>
+                <p>{{ exercise.muscle_group }}</p>
+                <p>Difficulty: {{ exercise.difficulty }}/5</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="exercise-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Add Exercise to Workout</h3>
+        <input type="number" id="exercise-sets" placeholder="Sets" class="form-control">
+        <input type="number" id="exercise-reps" placeholder="Reps" class="form-control">
+        <input type="number" id="exercise-rest" placeholder="Rest Time (seconds)" class="form-control">
+        <input type="number" id="exercise-order" placeholder="Order in workout" class="form-control">
+        <button onclick="addExerciseToWorkout()" class="btn btn-success">Add Exercise</button>
+    </div>
+</div>
+
+<style>
+.workout-form {
+    max-width: 600px;
+    margin: 20px 0;
+}
+
+.workout-form input,
+.workout-form textarea {
+    margin-bottom: 10px;
+}
+
+.exercise-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.exercise-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+
+.exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.exercise-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.exercise-card:hover {
+    background-color: #f5f5f5;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 5px;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.modal-content input {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .exercise-grid,
+    .exercise-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}
+</style>
+
+<script>
+let currentExerciseId = null;
+
+function updateWorkout() {
+    const formData = new FormData();
+    formData.append('name', document.getElementById('workout-name').value);
+    formData.append('description', document.getElementById('workout-description').value);
+    formData.append('difficulty_level', document.getElementById('workout-difficulty').value);
+    formData.append('duration_minutes', document.getElementById('workout-duration').value);
+
+    fetch('{% url "update_workout" workout.id %}', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+    })
+    .then(response => response.json());
+}
+
+function deleteExercise(workoutId, exerciseId) {
+    if(confirm('Are you sure you want to remove this exercise?')) {
+        fetch(`/workout/${workoutId}/delete-exercise/${exerciseId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.status === 'success') {
+                document.getElementById(`exercise-${exerciseId}`).remove();
+            }
+        });
+    }
+}
+
+function showExerciseModal(exerciseId, exerciseName) {
+    currentExerciseId = exerciseId;
+    const modal = document.getElementById('exercise-modal');
+    modal.style.display = 'block';
+}
+
+function addExerciseToWorkout() {
+    const formData = new FormData();
+    formData.append('workout_id', '{{ workout.id }}');
+    formData.append('exercise_id', currentExerciseId);
+    formData.append('sets', document.getElementById('exercise-sets').value);
+    formData.append('reps', document.getElementById('exercise-reps').value);
+    formData.append('rest_time', document.getElementById('exercise-rest').value);
+    formData.append('order', document.getElementById('exercise-order').value);
+
+    fetch('{% url "add_exercise_to_workout" %}', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === 'success') {
+            location.reload(); // Перезагрузка страницы для отображения новых данных
+        }
+    });
+}
+
+// Close modal when clicking on X or outside
+document.querySelector('.close').onclick = function() {
+    document.getElementById('exercise-modal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById('exercise-modal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+{% endblock %}

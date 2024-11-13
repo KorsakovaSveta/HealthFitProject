@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness App - Register</title>
+    <link rel="stylesheet" href="/static/css/registration.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">    
+</head>
+<body>
+    <div class="form-container" id="formContainer">
+        <h2>Register for an Account</h2>
+        <form id="registerForm" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div style="position: relative;">
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <i class="fa fa-eye-slash show-password-icon" aria-hidden="true"></i>
+                </div>
+                <small class="password-requirements">Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, 1 digit.</small>
+            </div>
+            <div class="form-group">
+                
+                <label for="confirmPassword">Confirm Password</label>
+                <div style="position: relative;">
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                <i class="fa fa-eye-slash show-password-icon" aria-hidden="true"></i>
+                </div>    
+            </div>
+            <div class="form-group">
+                <button type="submit" onclick="showSuccessMessage()">Register</button>
+            </div>
+           
+           
+        </form>
+        <p>Have an account? Login <a href = '/login'>Here</a></p>
+    
+   
+    {% if error_message %}
+    <div class="error-message" id="errorMessage">
+        {{ error_message }}
+    </div>
+    {% endif %}
+  
+    {% if messages %}
+    <div class="success-message" id="successMessage"> 
+        {{ message }}
+    </div>
+    {% endif %}
+    
+</div>
+    <script>
+    const showPasswordIcons = document.querySelectorAll('.show-password-icon');
+    const passwordRequirements = document.querySelectorAll('.password-requirements');
+    const passwordInputs = document.querySelectorAll('input[type="password"]');
+
+    showPasswordIcons.forEach((icon, index) => {
+        icon.addEventListener('click', function() {
+            const type = passwordInputs[index].getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInputs[index].setAttribute('type', type);
+            icon.classList.toggle('fa-eye-slash');
+            icon.classList.toggle('fa-eye');
+        });
+    });
+
+    passwordInputs.forEach((input, index) => {
+        input.addEventListener('focus', function() {
+            passwordRequirements[index].style.display = 'block';
+        });
+
+        input.addEventListener('blur', function() {
+            if (input.value === '') {
+                passwordRequirements[index].style.display = 'none';
+            }
+        });
+    });
+    </script>
+</body>
+</html>

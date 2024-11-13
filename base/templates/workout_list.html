@@ -1,0 +1,65 @@
+
+{% block content %}
+
+<div class="container">
+    <h2>My Workouts</h2>
+    
+    <form  action="{% url 'create_workout' %}">
+        <button class="btn btn-primary" id="view">Create New Workout</button>
+    </form>
+    <div class="workout-grid">
+        {% for workout in workouts %}
+        <div class="workout-card">
+            <h3>{{ workout.name }}</h3>
+            <p>{{ workout.description }}</p>
+            <p>Difficulty: {{ workout.difficulty_level }}/5</p>
+            <p>Duration: {{ workout.duration_minutes }} minutes</p>
+            
+            <h4>Exercises:</h4>
+            <ul>
+                {% for workout_exercise in workout.workoutexercise_set.all %}
+                <li>
+                    {{ workout_exercise.exercise.name }} - 
+                    {{ workout_exercise.sets }}x{{ workout_exercise.reps }}, {{ workout_exercise.calories }} cal
+                </li>
+                {% endfor %}
+            </ul>
+            
+            <a href="{% url 'edit_workout' workout.id %}" class="btn btn-secondary">Edit Workout</a>
+        </div>
+        {% empty %}
+        <p>No workouts created yet.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+.workout-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.workout-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.workout-card h3 {
+    margin-top: 0;
+}
+
+.workout-card ul {
+    padding-left: 20px;
+}
+
+@media (max-width: 768px) {
+    .workout-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}
