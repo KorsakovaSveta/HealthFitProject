@@ -26,6 +26,7 @@
             </ul>
             
             <a href="{% url 'edit_workout' workout.id %}" class="btn btn-secondary">Edit Workout</a>
+            <a href="{% url 'workout_detail' workout.id %}">View exercises</a>
         </div>
         {% empty %}
         <p>No workouts created yet.</p>

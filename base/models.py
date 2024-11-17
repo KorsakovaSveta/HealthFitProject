@@ -3,14 +3,16 @@ from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Exercise(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=300)
     description = models.TextField()
     muscle_group = models.CharField(max_length=100)
     difficulty = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(5)]
+        validators=[MinValueValidator(1), MaxValueValidator(5)], null=True
     )
-    demonstration_video = models.URLField(blank=True)
+    demonstration_video = models.URLField(blank=True, null=True, max_length=500)
+    demonstration_video_2 = models.URLField(blank=True, null=True, max_length=500)
     calories = models.FloatField()
+    equipment = models.CharField(max_length=100)
     def __str__(self):
         return self.name
 

@@ -12,6 +12,16 @@ def workout_list(request):
     return render(request, 'workout_list.html', {'workouts': workouts})
 
 @login_required
+def workout_detail(request, workout_id):
+    arr=[]
+    workout = get_object_or_404(Workout, id=workout_id)
+    workout_exercises = WorkoutExercise.objects.filter(workout=workout).select_related('exercise').order_by('order')
+    context = {
+        'workout_exercises': workout_exercises,
+    }
+    return render(request, 'workout_detail.html', context)
+
+@login_required
 def edit_workout(request, workout_id):
     workout = get_object_or_404(Workout, id=workout_id, created_by=request.user)
     exercises = Exercise.objects.all()

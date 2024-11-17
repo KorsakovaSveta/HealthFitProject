@@ -23,7 +23,20 @@
             <div class="exercise-card" onclick="showExerciseModal('{{ exercise.id }}', '{{ exercise.name }}')">
                 <h4>{{ exercise.name }}</h4>
                 <p>{{ exercise.muscle_group }}</p>
-                <p>Difficulty: {{ exercise.difficulty }}/5</p>
+                <p>{{ exercise.description }}</p>
+                <p>{{ exercise.equipment }}</p>
+                <p>{{ exercise.difficulty }}</p>
+                {% if exercise.demonstration_video %}
+                <div class="gif">
+                    <img data-src='{{ exercise.demonstration_video }}' alt="gif" class="lazy">
+                </div>
+                {% endif %}
+                {% if exercise.demonstration_video_2 %}
+                <div class="gif">
+                    <img data-src='{{ exercise.demonstration_video_2 }}' alt="gif" class="lazy">
+                </div>
+                {% endif %}
+               
             </div>
             {% endfor %}
         </div>
@@ -45,6 +58,11 @@
 </div>
 
 <style>
+
+img {
+    width: 100%;
+    height: auto;
+}
 
 #view {
     margin-top: 20px;
@@ -120,6 +138,27 @@
     }
 }
 </style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const lazyImages = document.querySelectorAll('img.lazy');
+
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        lazyImages.forEach(img => {
+            imageObserver.observe(img);
+        });
+    });
+</script>
 
 <script>
 let currentWorkoutId = null;
