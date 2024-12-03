@@ -12,34 +12,68 @@
 </head>
 <body>
     <div class="form-container" id="formContainer">
-        <h2>Body Parameters</h2>
+        <h2>Информация о вас</h2>
         <form id="registerForm" method="POST">
             {% csrf_token %}
             <div class="form-group">
-                <label for="height">Height</label>
+                <label for="sex">Выберите ваш пол:</label>
+                <select name="sex" id="sex">
+                    <option value="male">Мужской</option>
+                    <option value="female">Женский</option>
+                </select>
+                
+            </div>
+            <div class="form-group">
+                <label for="height">Рост</label>
                 <input type="text" id="height" name="height" placeholder="Enter your height" required>
             </div>
             <div class="form-group">
-                <label for="email">Weight</label>
+                <label for="email">Вес</label>
                 <input type="text" id="weight" name="weight" placeholder="Enter your weight" required>
             </div>
             <div class="form-group">
-                <label for="birth_date">Birth date</label>
+                <label for="birth_date">Дата рождения</label>
                 <input type="date" id="birth_date" name="birth_date" placeholder="Enter your birth date" required>
                 
             </div>
             <div class="form-group">
                 <label for="fitness_goal">Выберите вашу фитнес-цель:</label>
                 <select name="fitness_goal" id="fitness_goal">
-                    <option value="weight_loss">Снижение веса</option>
-                    <option value="muscle_gain">Набор мышечной массы</option>
-                    <option value="maintenance">Поддержание текущего веса</option>
-                    <option value="endurance">Увеличение выносливости</option>
+                    <option value="weight_loss">Похудеть</option>
+                    <option value="muscle_gain">Набрать вес</option>
+                    <option value="maintenance">Поддерживать текущий вес</option>
+                    <option value="muscle_gain">Нарастить мышцы</option>
+                </select>
+                
+            </div>
+            
+            <div class="form-group-additional-fitness-goal">
+                <label id='title-additional-fitness-goal' for="additional_fitness_goals">Какие дополнительные цели у вас есть?</label>
+                <div name="additional_fitness_goals" id="additional_fitness_goals">
+                    <label><input type="checkbox" name="additional_fitness_goals" value="relationship_with_food">Улучшить взаимоотношения с едой</label>
+                    <label><input type="checkbox" name="additional_fitness_goals" value="cook_food">Научиться готовить здоровую пищу</label>
+                    <label><input type="checkbox" name="additional_fitness_goals" value="chest_musles">Проработать грудные мышцы</label>
+                    <label><input type="checkbox" name="additional_fitness_goals" value="back_musles">Проработать мышцы спины</label>
+                    <label><input type="checkbox" name="additional_fitness_goals" value="arm_musles">Проработать мышцы рук</label>
+                    <label><input type="checkbox" name="additional_fitness_goals" value="leg_musles">Проработать мышцы ног</label>
+                    <label><input type="checkbox" name="additional_fitness_goals" value="shoulder_musles">Проработать плечевые мышцы</label>
+                    <label><input type="checkbox" name="additional_fitness_goals" value="abs_muscles">Проработать мышцы пресса</label>
+                </div>
+                
+            </div>
+
+            <div class="form-group">
+                <label for="activity">Насколько вы активны?</label>
+                <select name="activity" id="activity">
+                    <option value="slightly_active">Слегка активный (сидячая работа)</option>
+                    <option value="moderately_active">Умеренно активный (1-2 тренировки в неделю, 10000 шагов в день)</option>
+                    <option value="active">Активный (2-3 тренировки в неделю, 15000 шагов в день)</option>
+                    <option value="very_active">Очень активный (3-5 тренировки в неделю, больше 15000 шагов в день)</option>
                 </select>
                 
             </div>
             <div class="form-group">
-                <button type="submit" onclick="showSuccessMessage()">Add Parameters</button>
+                <button type="submit" onclick="showSuccessMessage()">Добавить параметры</button>
             </div>
            
         </form>

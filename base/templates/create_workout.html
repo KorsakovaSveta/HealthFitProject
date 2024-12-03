@@ -1,20 +1,48 @@
-
 {% block content %}
-
 <div class="container">
     <h2>Create New Workout</h2>
     
     <div class="workout-form form-container">
-        <input type="text" id="workout-name" placeholder="Workout Name" class="form-control">
-        <textarea id="workout-description" placeholder="Workout Description" class="form-control"></textarea>
-        <input type="number" id="workout-difficulty" placeholder="Difficulty (1-5)" class="form-control" min="1" max="5">
-        <input type="number" id="workout-duration" placeholder="Duration (minutes)" class="form-control">
-        <button onclick="createWorkout()" class="btn btn-primary">Create Workout</button>
-   
+      
+            <input type="text" id="name" name="name" placeholder="Workout Name" class="form-control">
+            <textarea id="description" name="description" placeholder="Workout Description" class="form-control"></textarea>
+           
+                <label for="musle_group">Выберите прорабатываемую группу мышц:</label>
+                <select name="musle_group" id="musle_group">
+                    <option value="chest_musles">Грудные мышцы</option>
+                    <option value="back_musles">Мышцы спины</option>
+                    <option value="arm_musles">Мышцы рук</option>
+                    <option value="leg_musles">Мышцы ног</option>
+                    <option value="shoulder_musles">Мышцы плеча</option>
+                    <option value="abs_muscles">Мышцы пресса</option>
+                </select>
+                
+          
+                <label for="equipment">Выберите оборудование:</label>
+                <select name="equipment" id="equipment">
+                    <option value="own_weight">Со своим весом</option>
+                    <option value="dumbbells">С гантелями</option>
+                    <option value="barbell">Со штангой</option>
+                    <option value="bars">На брусьях</option>
+                    <option value="rubber_hinges">С резиновыми петлями</option>
+                    <option value="horizontal_bar">На турнике</option>
+                    <option value="fitness_elastic_band">С фитнес-резинкой</option>
+                </select>
+          
+            <input type="number" id="difficulty_level" name="difficulty_level" placeholder="Difficulty (1-5)" class="form-control" min="1" max="5">
+            <button onclick="createWorkout()" class="btn btn-primary">Create Workout</button>
+    
+           
+       
+        <form  action="{% url 'generate-workout' %}">
+            <button type="submit" class="btn btn-primary" id="view">Generation workouts</button>
+        </form>
         <form  action="{% url 'workout_list' %}">
             <button type="submit" class="btn btn-primary" id="view">View workouts</button>
         </form>
+        
     </div>    
+    
     
     <div id="exercise-list" style="display: none;">
         <h3>Add Exercises to Workout</h3>
@@ -41,6 +69,7 @@
             {% endfor %}
         </div>
     </div>
+
    
 </div>
 
@@ -165,16 +194,19 @@ let currentWorkoutId = null;
 let currentExerciseId = null;
 
 function createWorkout() {
-    const name = document.getElementById('workout-name').value;
-    const description = document.getElementById('workout-description').value;
-    const difficulty = document.getElementById('workout-difficulty').value;
-    const duration = document.getElementById('workout-duration').value;
+    const name = document.getElementById('name').value;
+    const description = document.getElementById('description').value;
+    const musle_group = document.getElementById('musle_group').value;
+    const equipment = document.getElementById('equipment').value;
+    const difficulty = document.getElementById('difficulty_level').value;
 
     const formData = new FormData();
     formData.append('name', name);
     formData.append('description', description);
+    formData.append('musle_group', musle_group);
+    formData.append('equipment', equipment);
     formData.append('difficulty_level', difficulty);
-    formData.append('duration_minutes', duration);
+
 
     fetch('{% url "create_workout" %}', {
         method: 'POST',

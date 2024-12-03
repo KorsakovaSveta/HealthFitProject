@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views, fill_db, create_own_workout, view_and_edit_workouts
+from . import views, fill_db, create_own_workout, view_and_edit_workouts, view_exercises, ai_workout_generation
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -12,6 +12,7 @@ urlpatterns = [
     path('create-exercises/', fill_db.create_exercise, name='create_exercises'),
     # path('delete-account/', views.DeleteAccountView.as_view(), name='delete_account')
     path('add-body-params/', views.AddBodyParams.as_view(), name='addbodyparams_page'),
+    path('view-exercises/', view_exercises.view_exercises, name='view_exercises'),
     path('create-workout/', create_own_workout.create_workout, name='create_workout'),
     path('add-exercise-to-workout/', create_own_workout.add_exercise_to_workout, name='add_exercise_to_workout'),
     path('workouts/', view_and_edit_workouts.workout_list, name='workout_list'),
@@ -19,4 +20,6 @@ urlpatterns = [
     path('workout/update/<int:workout_id>/', view_and_edit_workouts.update_workout, name='update_workout'),
     path('workout/<int:workout_id>/delete-exercise/<int:exercise_id>/', view_and_edit_workouts.delete_workout_exercise, name='delete_workout_exercise'),
     path('workout/<int:workout_id>/', view_and_edit_workouts.workout_detail, name='workout_detail'),
+
+    path('generate-workout/', ai_workout_generation.generate_workout, name='generate-workout'),
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -103,12 +103,15 @@ class AddBodyParams(View):
         if request.method == 'POST':
             #user = authenticate(request, username=username, password=password)
             if request.user:
+                sex = request.POST.get('sex')
                 height = request.POST.get('height')
                 weight = request.POST.get('weight')
                 birth_date = request.POST.get('birth_date')
                 fitness_goal = request.POST.get('fitness_goal')
-
-                user = UserProfile.objects.create(user=request.user, height=height, weight=weight, birth_date=birth_date, fitness_goal=fitness_goal)
+                additional_fitness_goals = request.POST.getlist('additional_fitness_goals')
+                activity = request.POST.get('activity')
+                additional_fitness_goals_str = ', '.join(additional_fitness_goals)
+                user = UserProfile.objects.create(user=request.user, sex=sex, height=height, weight=weight, birth_date=birth_date, fitness_goal=fitness_goal, additional_fitness_goals=additional_fitness_goals_str, activity=activity)
                 user.save()
                 #login(request, user)
                 return redirect('main_page')
@@ -119,4 +122,3 @@ class AddBodyParams(View):
             
             return render(request, self.template_name)
   
-    

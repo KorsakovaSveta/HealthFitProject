@@ -17,12 +17,13 @@ class Exercise(models.Model):
         return self.name
 
 class Workout(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.TextField()
+    name = models.CharField(max_length=200, null=True)
+    description = models.TextField(null=True)
+    musle_group = models.CharField(max_length=200, null=True)
+    equipment = models.CharField(max_length=200, null=True)
     difficulty_level = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(5)]
+        validators=[MinValueValidator(1), MaxValueValidator(5)], null=True
     )
-    duration_minutes = models.IntegerField()
     exercises = models.ManyToManyField(Exercise, through='WorkoutExercise')
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -43,10 +44,14 @@ class WorkoutExercise(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    sex = models.CharField(max_length=200, null=True)
     height = models.FloatField(null=True, blank=True)
     weight = models.FloatField(null=True, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     fitness_goal = models.CharField(max_length=200)
+    additional_fitness_goals = models.CharField(max_length=200, null=True)
+    activity = models.CharField(max_length=200, null=True)
+
 
 class WorkoutLog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

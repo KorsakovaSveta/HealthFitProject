@@ -8,14 +8,16 @@ def create_workout(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         description = request.POST.get('description')
+        musle_group = request.POST.get('musle_group')
+        equipment = request.POST.get('equipment')
         difficulty_level = request.POST.get('difficulty_level')
-        duration_minutes = request.POST.get('duration_minutes')
         
         workout = Workout.objects.create(
             name=name,
             description=description,
+            musle_group = musle_group,
+            equipment = equipment,
             difficulty_level=difficulty_level,
-            duration_minutes=duration_minutes,
             created_by=request.user
         )
         return JsonResponse({'workout_id': workout.id})

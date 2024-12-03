@@ -13,8 +13,7 @@
             <h3>{{ workout.name }}</h3>
             <p>{{ workout.description }}</p>
             <p>Difficulty: {{ workout.difficulty_level }}/5</p>
-            <p>Duration: {{ workout.duration_minutes }} minutes</p>
-            
+           
             <h4>Exercises:</h4>
             <ul>
                 {% for workout_exercise in workout.workoutexercise_set.all %}

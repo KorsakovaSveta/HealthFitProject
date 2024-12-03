@@ -110,3 +110,27 @@ a {
     display: none;
     
 }
+#additional_fitness_goals {
+display: flex; 
+flex-direction: column;
+text-align: left;
+}
+
+.form-group-additional-fitness-goal {
+    width: 100%;
+    padding: 0 40px 10px 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    flex-direction: column;
+}
+
+
+
+#title-additional-fitness-goal {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}

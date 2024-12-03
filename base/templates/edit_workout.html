@@ -5,10 +5,8 @@
     <div class="workout-form">
         <input type="text" id="workout-name" value="{{ workout.name }}" class="form-control">
         <textarea id="workout-description" class="form-control">{{ workout.description }}</textarea>
-        <input type="number" id="workout-difficulty" value="{{ workout.difficulty_level }}" 
-               class="form-control" min="1" max="5">
-        <input type="number" id="workout-duration" value="{{ workout.duration_minutes }}" 
-               class="form-control">
+        <input type="number" id="workout-difficulty" value="{{ workout.difficulty_level }}" class="form-control" min="1" max="5">
+        
         <button onclick="updateWorkout()" class="btn btn-primary">Save Changes</button>
     </div>
 
@@ -190,8 +188,7 @@ function updateWorkout() {
     formData.append('name', document.getElementById('workout-name').value);
     formData.append('description', document.getElementById('workout-description').value);
     formData.append('difficulty_level', document.getElementById('workout-difficulty').value);
-    formData.append('duration_minutes', document.getElementById('workout-duration').value);
-
+   
     fetch('{% url "update_workout" workout.id %}', {
         method: 'POST',
         body: formData,
