@@ -12,7 +12,7 @@ model = genai.GenerativeModel('gemini-pro')
 @login_required
 def generate_workout(request):
     if request.method == 'POST':
-        selected_equipments = request.POST.getlist('equipment')
+        selected_equipments = request.POST.getlist('equipments')
         selected_muscles = request.POST.getlist('muscles')
         for selected_equipment in selected_equipments:
     
