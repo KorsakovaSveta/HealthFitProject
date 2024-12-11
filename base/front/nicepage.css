@@ -4,7 +4,7 @@
  * Copyright 2014-2021 Froala Labs
  */
 
-.fr-clearfix::after {
+ .fr-clearfix::after {
   clear: both;
   display: block;
   content: "";
@@ -43674,7 +43674,7 @@ a.u-link.u-text-hover-grey-90:hover {
         
         
         
-        --theme-sheet-width-xl: 1080px;
+        --theme-sheet-width-xl: 1450px;
         --theme-sheet-width-lg: 940px;
         --theme-sheet-width-md: 720px;
         --theme-sheet-width-sm: 540px;
@@ -44170,9 +44170,9 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 
 .u-header .u-image-1 {
-  width: 195px;
-  height: 195px;
-  margin: -35px auto 0 -30px;
+  width: 216px;
+  height: 51px;
+  margin: 24px auto 0 -30px;
 }
 
 .u-header .u-logo-image-1 {
@@ -44181,7 +44181,7 @@ a.u-link.u-text-hover-grey-90:hover {
 }
 
 .u-header .u-menu-1 {
-  margin: -127px -12px 33px auto;
+  margin: -42px -12px 33px auto;
 }
 
 .u-header .u-hamburger-link-1 {
@@ -44229,7 +44229,7 @@ a.u-link.u-text-hover-grey-90:hover {
 .u-header .u-icon-2 {
   width: 29px;
   height: 29px;
-  margin: 0 1px 0 0;
+  margin: 150px 1px 0 0;
   padding: 0;
 }
 
@@ -44280,7 +44280,7 @@ a.u-link.u-text-hover-grey-90:hover {
   }
 
   .u-header .u-menu-1 {
-    margin-top: -127px;
+    margin-top: -42px;
     margin-right: 58px;
   }
 

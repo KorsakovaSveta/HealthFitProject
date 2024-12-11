@@ -11,9 +11,12 @@ from django.urls import reverse_lazy
 from .forms import CustomPasswordChangeForm
 from .models import UserProfile
 import requests
-
-class MainPageView(LoginRequiredMixin, TemplateView):
-    template_name = 'main_page.html'
+from django.utils import dateparse
+from django.http import HttpResponseRedirect
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+class MainPageView(TemplateView):
+    template_name = 'index.html'
 
     def post(self, request):
         if request.method == 'POST':
@@ -26,17 +29,17 @@ class MainPageView(LoginRequiredMixin, TemplateView):
 
 
 class RegistrationView(View):
-    template_name = 'registration_page.html'
+    template_name = 'Регистрация.html'
 
     def get(self, request):
         return render(request, self.template_name)
 
     def post(self, request):
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        confirm_password = request.POST.get('confirmPassword')
-       
+        username = request.POST.get('name-f18c')
+        email = request.POST.get('phone-cbff')
+        password = request.POST.get('text-13a4')
+        confirm_password = request.POST.get('message-1015')
+        
         if password == confirm_password:
             try:
                 
@@ -45,8 +48,9 @@ class RegistrationView(View):
                 user = User.objects.create_user(username, email, password)
                 login(request, user)
                 user.save()
-                messages.success(request, 'You have successfully registered!')
-                return redirect('addbodyparams_page')
+                print(username)
+                #messages.success(request, 'You have successfully registered!')
+                return JsonResponse({'redirect': '/userinfo/'})
             
             except ValidationError as e:
                 error_message = ' '.join(e.messages)
@@ -56,8 +60,9 @@ class RegistrationView(View):
                 error_message = 'Error creating account.'
                 return render(request, self.template_name, {'error_message': error_message})
         else:
-            error_message = 'Passwords do not match.'
+            error_message = 'Пароль не совпадает'
             return render(request, self.template_name, {'error_message': error_message})
+        
         
 class LoginView(View):
 
@@ -94,7 +99,7 @@ class CustomPasswordChangeView(PasswordChangeView):
     success_url = reverse_lazy('login')
 
 class AddBodyParams(View):
-    template_name = 'addbodyparams_page.html'
+    template_name = 'Информация о пользователе.html'
 
     def get(self, request):
         return render(request, self.template_name)
@@ -103,18 +108,28 @@ class AddBodyParams(View):
         if request.method == 'POST':
             #user = authenticate(request, username=username, password=password)
             if request.user:
-                sex = request.POST.get('sex')
-                height = request.POST.get('height')
-                weight = request.POST.get('weight')
-                birth_date = request.POST.get('birth_date')
-                fitness_goal = request.POST.get('fitness_goal')
+                sex = request.POST.get('select-b6e8')
+                height = request.POST.get('text-74dd')
+                weight = request.POST.get('text-c043')
+                desired_weight = request.POST.get('text-bb48')
+                birth_date = request.POST.get('text-e46f')
+                birth_date = dateparse.parse_date(birth_date)
+                fitness_goal = request.POST.get('select-bda1')
                 additional_fitness_goals = request.POST.getlist('additional_fitness_goals')
-                activity = request.POST.get('activity')
+                activity = request.POST.get('select-1016')
                 additional_fitness_goals_str = ', '.join(additional_fitness_goals)
-                user = UserProfile.objects.create(user=request.user, sex=sex, height=height, weight=weight, birth_date=birth_date, fitness_goal=fitness_goal, additional_fitness_goals=additional_fitness_goals_str, activity=activity)
+                type_of_food = request.POST.get('type_of_food')
+                user = get_object_or_404(User, id=request.user.id)
+                print(user)
+                # Проверяем, существует ли уже профиль
+                if UserProfile.objects.filter(user=user).exists():
+                    return JsonResponse({'redirect': '/profile/'})
+
+                user = UserProfile.objects.create(user=request.user, sex=sex, height=height, weight=weight, desired_weight=desired_weight, birth_date=birth_date, fitness_goal=fitness_goal, additional_fitness_goals=additional_fitness_goals_str, activity=activity, type_of_food=type_of_food)
                 user.save()
                 #login(request, user)
-                return redirect('main_page')
+                return JsonResponse({'redirect': '/profile/'})
+               
             else:
                 error_message = 'Incorrect email or password. Please try again.'
                 return render(request, self.template_name, {'error_message': error_message})
@@ -122,3 +137,8 @@ class AddBodyParams(View):
             
             return render(request, self.template_name)
   
+class Profile(View):
+    template_name = 'Профиль.html'
+
+    def get(self, request):
+        return render(request, self.template_name)

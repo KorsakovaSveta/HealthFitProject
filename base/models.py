@@ -47,11 +47,12 @@ class UserProfile(models.Model):
     sex = models.CharField(max_length=200, null=True)
     height = models.FloatField(null=True, blank=True)
     weight = models.FloatField(null=True, blank=True)
+    desired_weight = models.FloatField(null=True, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     fitness_goal = models.CharField(max_length=200)
-    additional_fitness_goals = models.CharField(max_length=200, null=True)
+    additional_fitness_goals = models.CharField(max_length=700, null=True)
     activity = models.CharField(max_length=200, null=True)
-
+    type_of_food = models.CharField(max_length=200, null=True)
 
 class WorkoutLog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
