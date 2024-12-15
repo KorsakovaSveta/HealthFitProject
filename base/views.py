@@ -15,6 +15,7 @@ from django.utils import dateparse
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
+import datetime
 class MainPageView(TemplateView):
     template_name = 'index.html'
 
@@ -63,35 +64,33 @@ class RegistrationView(View):
             error_message = 'Пароль не совпадает'
             return render(request, self.template_name, {'error_message': error_message})
         
-        
-class LoginView(View):
 
-    template_name = 'login_page.html'
-
-    def get(self, request):
-        return render(request, self.template_name)
     
-    def post(self, request):
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
+def login_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('main_page')
-            else:
-                error_message = 'Incorrect email or password. Please try again.'
-                return render(request, self.template_name, {'error_message': error_message})
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            print(user)
+            return JsonResponse({'redirect': '/profile/'})
+        
         else:
-            
-            return render(request, self.template_name)
+            error_message = 'Incorrect email or password. Please try again.'
+            return render(request, 'login_page.html', {'error_message': error_message})
+
+    return render(request, 'login_page.html')
   
 
 
 def user_logout(request):
     logout(request)
-    return redirect('main_page')
+    return redirect('main_page_for_logout_user')
+
+def main_page_for_logout_user(request):
+    return render(request, 'index copy.html')
 
 class CustomPasswordChangeView(PasswordChangeView):
     form_class = CustomPasswordChangeForm
@@ -137,8 +136,38 @@ class AddBodyParams(View):
             
             return render(request, self.template_name)
   
-class Profile(View):
-    template_name = 'Профиль.html'
-
-    def get(self, request):
-        return render(request, self.template_name)
+def profile_view(request):
+    user = get_object_or_404(UserProfile, user_id=request.user.id)
+    # user_profile = UserProfile.objects.filter(user=user)
+    user_activity = user.activity
+    if user_activity.find('('):
+        user_activity = user_activity[:user.activity.find('(')]
+    print(user_activity)
+    print(datetime.datetime.now().date())
+    today = datetime.datetime.now().date()
+  
+    age = today.year - user.birth_date.year - ((today.month, today.day) < (user.birth_date.month, user.birth_date.day))
+    print(user.weight)
+    imt = round(user.weight / ((user.height / 100) ** 2), 2)
+    print(imt)
+    return render(request, 'Профиль.html', {'chest': user.chest, 'waist': user.waist, 'hips': user.hips, 'leg_in_thigh': user.leg_in_thigh, 'arm': user.arm, 'age': age, 'activity': user_activity, 'type_of_food': user.type_of_food, 'weight': int(user.weight), 'name': request.user.username, 'goal': user.fitness_goal, 'desired_weight': int(user.desired_weight), 'imt': imt})
+    
+def add_body_params(request):
+    user = get_object_or_404(UserProfile, user_id=request.user.id)
+    if request.method == 'POST':
+        chest = request.POST.get('chest')
+        waist = request.POST.get('waist')
+        hips = request.POST.get('hips')
+        leg_in_thigh = request.POST.get('leg_in_thigh')
+        arm = request.POST.get('arm')
+        print(chest)
+        user.chest = chest
+        user.waist = waist
+        user.hips = hips
+        user.leg_in_thigh = leg_in_thigh
+        user.arm = arm
+        user.save()
+        return JsonResponse({'status': 'success'})
+    
+def view_dairy(request):
+    return render(request, 'dairy.html')

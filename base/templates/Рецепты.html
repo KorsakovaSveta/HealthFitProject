@@ -1,15 +1,13 @@
 
-
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="ru"><head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>Список тренировок</title>
+    <title>Рецепты</title>
     <link rel="stylesheet" href="/static/css/nicepage.css" media="screen">
-<link rel="stylesheet" href="/static/css/Список-тренировок.css" media="screen">
-
+<link rel="stylesheet" href="/static/css/Рецепты.css" media="screen">
     <script class="u-script" type="text/javascript" src="/static/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="/static/nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 7.0.3, nicepage.com">
@@ -33,10 +31,10 @@
 		]
 }</script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Список тренировок">
+    <meta property="og:title" content="Рецепты">
     <meta property="og:type" content="website">
   <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
-  <body data-path-to-root="Список-тренировок.html" data-include-products="false" class="u-body u-xl-mode" data-lang="ru"><header class="u-box-shadow u-clearfix u-header u-header" id="sec-07c8" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><div class="u-clearfix u-sheet u-sheet-1">
+  <body data-path-to-root="Рецепты.html" data-include-products="false" class="u-body u-xl-mode" data-lang="ru"><header class="u-box-shadow u-clearfix u-header u-header" id="sec-07c8" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><div class="u-clearfix u-sheet u-sheet-1">
         <a href="index.html" class="u-image u-logo u-image-1" data-image-width="500" data-image-height="119" title="Главная">
           <img src="images/BlackIllustrativeSportandFitnessLogo2-no-bg-HDcarve.photos1.png" class="u-logo-image u-logo-image-1">
         </a>
@@ -53,7 +51,7 @@
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Рецепты.html">Рецепты</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Тренировки.html">Тренировки</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link">Медиа</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Пофиль.html" style="padding-right: 20px;">Профиль</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Профиль.html" style="padding-right: 20px;">Профиль</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -64,7 +62,7 @@
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Рецепты.html" style="padding-top: 28px; padding-bottom: 28px;">Рецепты</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Тренировки.html" style="padding-top: 28px; padding-bottom: 28px;">Тренировки</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding-top: 28px; padding-bottom: 28px;">Медиа</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Пофиль.html" style="padding-top: 28px; padding-bottom: 28px;">Профиль</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Профиль.html" style="padding-top: 28px; padding-bottom: 28px;">Профиль</a>
 </li></ul>
                 <div class="u-clearfix u-group-elements u-group-elements-1"><span class="u-file-icon u-icon u-text-white u-icon-2"><img src="images/520717-2720f29f.png" alt=""></span><span class="u-file-icon u-icon u-text-white u-icon-3"><img src="images/1175117-2e9f8d11.png" alt=""></span><span class="u-file-icon u-icon u-text-white u-icon-4"><img src="images/726809-e5793281.png" alt=""></span><span class="u-file-icon u-icon u-text-white u-icon-7"><img src="images/4542032-ab5ce76b.png" alt=""></span><span class="u-file-icon u-icon u-text-white u-icon-8"><img src="images/1077063-281677a1.png" alt=""></span>
                 </div>
@@ -74,49 +72,53 @@
           </div>
         </nav>
       </div></header> 
- 
-          <meta name="theme-color" content="#478ac9">
-          <meta property="og:title" content="Список-тренировок">
-          <meta property="og:type" content="website">
-        <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
-        <body data-home-page="Список-тренировок.html" data-home-page-title="Список-тренировок" data-path-to-root="./" data-include-products="true" class="u-body u-xl-mode" data-lang="ru"><header class="u-clearfix u-header" id="sec-07c8" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""></header> 
-          <section class="u-clearfix u-container-align-center u-white u-section-1" id="carousel_eb78">
-            <div class="u-clearfix u-sheet u-sheet-1">
-              <div class="u-expanded-width u-list u-list-1 ">
-                
-                <div class="u-repeater u-repeater-1">
-                    {% for workout in workouts %}
-                  <div class="u-align-center u-container-style u-custom-item u-grey-10 u-list-item u-radius-50 u-repeater-item u-shape-round u-list-item-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-href="{% url 'workout_detail' workout.id %}">
-                    
-                    <div class="u-container-layout u-container-layout-1">
-                      <p class="u-text u-text-default u-text-grey-80 u-text-1">{{ workout.name }}</p>
-                      <p class="u-text u-text-default u-text-grey-80 u-text-2">{{ workout.description }}</p>
-                      <p class="u-align-left u-text u-text-grey-80 u-text-3">
-                        <span style="font-weight: 500;">Сложность:</span>
-                        <span style="font-weight: 500;">{{ workout.difficulty_level }}/5</span>
-                      </p>
-                      <p class="u-align-left u-text u-text-default u-text-grey-80 u-text-4">Упражнения:</p>
-                      <ul class="u-align-left u-custom-list u-spacing-6 u-text u-text-default u-text-font u-text-grey-80 u-text-5">
-                        {% for workout_exercise in workout.workoutexercise_set.all %}
-                        <li style="padding-left: 15px;">
-                          <div class="u-list-icon">
-                            <div>➔</div>
-                          </div>{{ workout_exercise.exercise.name }} - {{ workout_exercise.sets }}x{{ workout_exercise.reps }}, {{ workout_exercise.calories }} ккал
-                        </li>
-                        {% endfor %}
-                      </ul>
-                      
-                      <a href="{% url 'edit_workout' workout.id %}" class="u-active-grey-70 u-align-center u-border-2 u-border-active-grey-70 u-border-grey-80 u-border-hover-grey-75 u-btn u-btn-round u-button-style u-grey-80 u-hover-grey-75 u-radius u-text-active-grey-5 u-text-grey-5 u-text-hover-grey-5 u-btn-1">Изменить тренировку </a>
-                       
-                    </div>
-                    
-                  </div>
-                  {% endfor %}
-                </div>
-              </div>
+    <section class="u-clearfix u-white u-section-1" id="sec-df7c">
+      <div class="u-expanded-width u-list u-list-1">
+        <div class="u-repeater u-repeater-1">
+          <div class="u-align-left u-container-align-center u-container-align-left u-container-align-left-xl u-container-style u-list-item u-repeater-item u-white u-list-item-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-href="{% url 'view_recipes_breakfast' %}">
+            <div class="u-container-layout u-similar-container u-container-layout-1"><span class="u-align-center u-file-icon u-icon u-text-palette-2-base u-icon-1" data-animation-name="customAnimationIn" data-animation-duration="1250" data-animation-delay="750"><img src="images/8937854-cbe6f835.png" alt=""></span>
+              <h4 class="u-align-center u-custom-font u-font-roboto-condensed u-text u-text-1">Завтрак</h4>
             </div>
-          </section>
+          </div>
+          <div class="u-align-left u-container-align-center u-container-align-left u-container-align-left-xl u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-href="{% url 'view_recipes_lunch' %}">
+            <div class="u-container-layout u-similar-container u-container-layout-2"><span class="u-align-center u-file-icon u-icon u-text-palette-2-base u-icon-2" data-animation-name="customAnimationIn" data-animation-duration="1250" data-animation-delay="750"><img src="images/2387986-5808b959.png" alt=""></span>
+              <h4 class="u-align-center u-custom-font u-font-roboto-condensed u-text u-text-2">Обед</h4>
+            </div>
+          </div>
+          <div class="u-align-left u-container-align-center u-container-align-left u-container-align-left-xl u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-3" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-href="{% url 'view_recipes_dinner' %}">
+            <div class="u-container-layout u-similar-container u-container-layout-3"><span class="u-align-center u-file-icon u-icon u-text-palette-2-base u-icon-3" data-animation-name="customAnimationIn" data-animation-duration="1250" data-animation-delay="750"><img src="images/872295-e072c406.png" alt=""></span>
+              <h4 class="u-align-center u-custom-font u-font-roboto-condensed u-text u-text-3">Ужин</h4>
+            </div>
+          </div>
+          <div class="u-align-left u-container-align-center u-container-align-left u-container-align-left-xl u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-4" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-href="{% url 'view_recipes_snack' %}">
+            <div class="u-container-layout u-similar-container u-container-layout-4"><span class="u-align-center u-file-icon u-icon u-text-palette-2-base u-icon-4" data-animation-name="customAnimationIn" data-animation-duration="1250" data-animation-delay="750"><img src="images/15502522-7ec0da25.png" alt=""></span>
+              <h4 class="u-align-center u-custom-font u-font-roboto-condensed u-text u-text-4">Перекус</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img class="u-expanded-width u-image u-image-1" src="images/photo-1641283339694-f7bc5b3673ca.jpeg" data-image-width="1280" data-image-height="853" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">
+      <h1 class="u-text u-text-body-alt-color u-text-default u-text-5" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="0">Полезные и простые блюда</h1>
+    </section>
 
+    <section class="u-align-center u-clearfix u-white u-section-2" id="carousel_eb78">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="u-expanded-width u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            {% for recipe in recipes %}
+            <div class="u-align-center u-container-style u-grey-10 u-list-item u-radius-50 u-repeater-item u-shape-round u-list-item-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-href="{% url 'view_recipe_steps' recipe.id %}">
+              <div class="u-container-layout u-similar-container u-container-layout-1">
+                <img class="u-expanded-width u-image u-image-round u-radius u-image-1" src="{{ recipe.image }}" data-image-width="360" data-image-height="202">
+                <p class="u-text u-text-default u-text-1">{{ recipe.recipe_name }}</p>
+              </div>
+            
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    
     <footer class="u-align-center u-clearfix u-container-align-center u-footer u-grey-80 u-footer" id="sec-76d7"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">FitnessPro<br>Стань лучшей версией себя!
         </p>
@@ -132,71 +134,5 @@
           <a class="u-social-url" target="_blank" href="#"><span class="u-icon u-icon-circle u-social-icon u-social-youtube u-text-palette-2-base u-icon-5"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xlink:href="#svg-aa60"></use></svg><svg x="0px" y="0px" viewBox="0 0 112 112" id="svg-aa60" class="u-svg-content"><path d="M65.9,55.7l-17.6-8.9c-0.5-0.2-1,0.1-1,0.6v17.3c0,0.5,0.5,0.9,1,0.6L65.9,57C66.4,56.8,66.4,56,65.9,55.7z"></path><path d="M56.1,1.1c-30.4,0-55,24.6-55,55c0,30.4,24.6,55,55,55c30.4,0,55-24.6,55-55C111.1,25.7,86.5,1.1,56.1,1.1z M88.3,65.5 c0,7.4-6,13.4-13.4,13.4H37.3c-7.4,0-13.4-6-13.4-13.4V46.7c0-7.4,6-13.4,13.4-13.4h37.6c7.4,0,13.4,6,13.4,13.4V65.5z"></path></svg></span>
           </a>
         </div>
-      </div></footer>
-    </body>
-  
-<!-- <div class="container">
-    <h2>My Workouts</h2>
-    
-    <form  action="{% url 'create_workout' %}">
-        <button class="btn btn-primary" id="view">Create New Workout</button>
-    </form>
-    <div class="workout-grid">
-        {% for workout in workouts %}
-        <div class="workout-card">
-            <h3>{{ workout.name }}</h3>
-            <p>{{ workout.description }}</p>
-            <p>Difficulty: {{ workout.difficulty_level }}/5</p>
-           
-            <h4>Exercises:</h4>
-            <ul>
-                {% for workout_exercise in workout.workoutexercise_set.all %}
-                <li>
-                    {{ workout_exercise.exercise.name }} - 
-                    {{ workout_exercise.sets }}x{{ workout_exercise.reps }}, {{ workout_exercise.calories }} cal
-                </li>
-                {% endfor %}
-            </ul>
-            
-            <a href="{% url 'edit_workout' workout.id %}" class="btn btn-secondary">Edit Workout</a>
-            <a href="{% url 'workout_detail' workout.id %}">View exercises</a>
-        </div>
-        {% empty %}
-        <p>No workouts created yet.</p>
-        {% endfor %}
-    </div>
-</div> -->
-
-<style>
-
-
-.workout-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.workout-card {
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: white;
-}
-
-.workout-card h3 {
-    margin-top: 0;
-}
-
-.workout-card ul {
-    padding-left: 20px;
-}
-
-@media (max-width: 768px) {
-    .workout-grid {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
-
-</html>
+      </div></footer>  
+</body></html>

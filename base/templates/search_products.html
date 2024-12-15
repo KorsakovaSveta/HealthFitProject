@@ -1,0 +1,42 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавить продукт</title>
+</head>
+<body>
+    <h1>Добавление продукта в группу: {{ meal_group.group_name }}</h1>
+    
+    <!-- Форма поиска -->
+    <form method="get">
+        <input type="text" name="q" placeholder="Введите название продукта" value="{{ query }}">
+        <button type="submit" style="display: none;">Поиск</button>
+    </form>
+
+    <!-- Результаты поиска -->
+    {% if results %}
+        <h2>Результаты поиска</h2>
+        <ul>
+            {% for product in results %}
+                <li>
+                    {{ product.products_name }} (Ккал: {{ product.kcal_per_100g }}, Белки: {{ product.protein_per_100g }}, Жиры: {{ product.fat_per_100g }}, Углеводы: {{ product.carb_per_100g }})
+                    <form method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+
+                        <!-- Ввод количества граммов -->
+                        <input type="number" name="gramming" placeholder="Граммы" min="1" required>
+
+                        Кнопка добавления
+                        <button type="submit">Добавить</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Ничего не найдено.</p>
+    {% endif %}
+</body>
+</html>
+

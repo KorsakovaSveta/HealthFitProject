@@ -98,7 +98,7 @@
                     <label for="select-9bba" class="u-label u-text-grey-80 u-label-4">Прорабатываемая группа мышц</label>
                     <div class="u-form-select-wrapper">
                       <select id="select-9bba" name="select-9bba" class="u-grey-5 u-input u-input-rectangle u-radius u-input-4">
-                        <option value="Плечевые мышцы" data-calc="">Плечевые мышцы</option>
+                        <option value="Мышцы плеча" data-calc="">Плечевые мышцы</option>
                         <option value="Мышцы рук" data-calc="">Мышцы рук</option>
                         <option value="Грудные мышцы" data-calc="">Грудные мышцы</option>
                         <option value="Мышцы пресса" data-calc="">Мышцы пресса</option>
@@ -112,11 +112,15 @@
                     <label for="select-b0fa" class="u-label u-text-grey-80 u-label-4">Используемое оборудование</label>
                     <div class="u-form-select-wrapper">
                       <select id="select-b0fa" name="select-b0fa" class="u-grey-5 u-input u-input-rectangle u-radius u-input-4">
-                        <option value="Собственный вес" data-calc="">Собственный вес</option>
-                        <option value="Штанга" data-calc="">Штанга</option>
-                        <option value="Гантели" data-calc="">Гантели</option>
-                        <option value="Фитнес резинка" data-calc="">Фитнес резинка</option>
-                       
+                        <option value="Со своим весом" data-calc="">Собственный вес</option>
+                        <option value="Со штангой" data-calc="">Штанга</option>
+                        <option value="С гантелями" data-calc="">Гантели</option>
+                        <option value="С фитнес-резинкой" data-calc="">Фитнес-резинка</option>
+                        <option value="С резиновыми петлями" data-calc="">Резиновые петли</option>
+                        <option value="С резиной" data-calc="">Резина</option>
+                        <option value="На турнике" data-calc="">Турник</option>
+                        <option value="На брусьях" data-calc="">Брусья</option>
+                        
                       </select>
                       <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
                     </div>
@@ -246,13 +250,14 @@
 
 
 
-<section class="u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-valign-middle u-dialog-section-7" id="Добавление-упражнения">
+<section class="u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-valign-middle u-dialog-section-7" id="exercise-modal">
     <div class="u-align-center u-container-align-center u-container-style u-dialog u-image u-image-1" data-image-width="7304" data-image-height="4227">
       <div class="u-container-layout u-valign-top u-container-layout-1">
-        <div id="exercise-modal" class="modal u-form u-form-1">
-  
+        <button class="close u-dialog-close-button u-icon u-text-grey-40 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-efe9"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-efe9"><rect x="7" y="0" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="2" height="16"></rect><rect x="0" y="7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="16" height="2"></rect></svg></button>
+        
+        <div class="modal u-form u-form-1">
           <div class="modal-content u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 0px;" source="email" name="form">
-            <span class="close u-dialog-close-button u-icon u-text-grey-40 u-icon-1">&times;</span>
+            
             <div class="u-form-group">
               <label for="exercise-sets" class="u-label u-text-grey-80 u-label-1">Подходы</label>
               <input type="text" placeholder="Количество подходов" id="exercise-sets" name="exercise-sets" class="u-grey-5 u-input u-input-rectangle u-radius u-input-1" required="required">
@@ -275,7 +280,7 @@
             </div>
         </div>
         </div>
-      <!-- </div><button class="close u-dialog-close-button u-icon u-text-grey-40 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-efe9"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-efe9"><rect x="7" y="0" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="2" height="16"></rect><rect x="0" y="7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="16" height="2"></rect></svg></button> -->
+      </div>
     </div>
   </section>
   <style>.u-dialog-section-7 .u-image-1 {

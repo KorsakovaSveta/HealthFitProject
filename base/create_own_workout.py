@@ -41,7 +41,7 @@ def add_exercise_to_workout(request):
         workout = get_object_or_404(Workout, id=workout_id, created_by=request.user)
         exercise = get_object_or_404(Exercise, id=exercise_id)
         
-        WorkoutExercise.objects.create(
+        new_exercise_in_workout = WorkoutExercise.objects.create(
             workout=workout,
             exercise=exercise,
             sets=sets,
@@ -50,6 +50,10 @@ def add_exercise_to_workout(request):
             order=order,
             calories=int(sets)*int(reps)*exercise.calories
         )
+        workout_exercises = WorkoutExercise.objects.filter(order__gte=new_exercise_in_workout.order)
+        for workout_exercise in workout_exercises[1:]:
+            workout_exercise.order = workout_exercise.order+1
+            workout_exercise.save()
         return JsonResponse({'status': 'success'})
 
 # @login_required

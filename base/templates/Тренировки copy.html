@@ -7,6 +7,7 @@
     <title>Тренировки</title>
     <link rel="stylesheet" href="/static/css/nicepage.css" media="screen">
 <link rel="stylesheet" href="/static/css/Тренировки copy.css" media="screen">
+
     <script class="u-script" type="text/javascript" src="/static/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="/static/nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 7.0.3, nicepage.com">
@@ -46,7 +47,7 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link">Дневник</a>
+            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/meal-groups">Дневник</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Рецепты.html">Рецепты</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/view_exercises">Тренировки</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link">Медиа</a>
@@ -57,7 +58,7 @@
             <div class="u-align-center u-black u-container-align-center u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav u-sidenav-1">
               <div class="u-inner-container-layout u-sidenav-overflow"><span class="u-file-icon u-icon u-text-white u-icon-1"><img src="/static/images/520717-2720f29f.png" alt=""></span>
                 <div class="u-menu-close u-menu-close-1"></div>
-                <ul class="u-align-left u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding-top: 28px; padding-bottom: 28px;">Дневник</a>
+                <ul class="u-align-left u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding-top: 28px; padding-bottom: 28px;" href="/meal-groups">Дневник</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Рецепты.html" style="padding-top: 28px; padding-bottom: 28px;">Рецепты</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/view_exercises" style="padding-top: 28px; padding-bottom: 28px;">Тренировки</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding-top: 28px; padding-bottom: 28px;">Медиа</a>
@@ -79,12 +80,12 @@
               <h4 class="u-align-center u-custom-font u-font-roboto-condensed u-text u-text-1">Создай собственную тренировку</h4>
             </div>
           </div>
-          <div class="u-align-left u-container-align-left u-container-style u-dialog-link u-list-item u-repeater-item u-white u-list-item-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750"  data-href="/generate_workout">
+          <div onclick="showWorkoutAIModalWindow()" class="u-align-left u-container-align-left u-container-style u-dialog-link u-list-item u-repeater-item u-white u-list-item-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750">
             <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2"><span class="u-align-center u-file-icon u-icon u-icon-rectangle u-text-palette-2-base u-icon-2" data-animation-name="customAnimationIn" data-animation-duration="1250" data-animation-delay="750"><img src="/static/images/7747471-f460ec81.png" alt=""></span>
               <h4 class="u-align-center u-custom-font u-font-roboto-condensed u-text u-text-2">Cгенерируй тренировку с помощью AI</h4>
             </div>
           </div>
-          <div class="u-align-left u-container-align-center u-container-align-left u-container-align-left-xl u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-3" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-href="Список-тренировок.html">
+          <div class="u-align-left u-container-align-center u-container-align-left u-container-align-left-xl u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-3" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-href="/workouts">
             <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3"><span class="u-align-center u-file-icon u-icon u-icon-rectangle u-text-palette-2-base u-icon-3" data-animation-name="customAnimationIn" data-animation-duration="1250" data-animation-delay="750"><img src="/static/images/7660343-2ff7285a.png" alt=""></span>
               <h4 class="u-align-center u-custom-font u-font-roboto-condensed u-text u-text-3">Список Тренировок </h4>
             </div>
@@ -132,230 +133,25 @@
         </div>
       </div></footer>
 
-  <!-- <section class="u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-valign-middle u-dialog-section-7" id="Создание-тренировки">
-      <div class="u-align-center u-container-align-center u-container-style u-dialog u-image u-image-1" data-image-width="7304" data-image-height="4227">
-        <div class="u-container-layout u-valign-top u-container-layout-1">
-          <div class="u-form u-form-1">
-            <form method="POST" id='create-workout-form' class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 0px;" source="email" name="form">
-              {% csrf_token %}
-              <div class="u-form-group">
-                <label for="name-f18c" class="u-label u-text-grey-80 u-label-1">Название </label>
-                <input type="text" placeholder="Название тренировки" id="name-f18c" name="name-f18c" class="u-grey-5 u-input u-input-rectangle u-radius u-input-1" required="required">
-              </div>
-              <div class="u-form-group u-form-message u-form-group-2">
-                <label for="phone-cbff" class="u-label u-text-grey-80 u-label-2" wfd-invisible="true">Описание</label>
-                <textarea placeholder="​Описание тренировки" id="phone-cbff" name="phone-cbff" class="u-grey-5 u-input u-input-rectangle u-radius u-input-2" required="required"></textarea>
-              </div>
-              <div class="u-form-group u-form-group-3">
-                <label for="date-33f9" class="u-label u-text-grey-80 u-label-3">Сложность</label>
-                <input type="number" placeholder="Сложность тренировки (от 1 до 5)" id="date-33f9" name="date-33f9" class="u-grey-5 u-input u-input-rectangle u-radius u-input-3" required="required">
-              </div>
-              <div class="u-form-group u-form-select u-form-group-4">
-                <label for="select-9bba" class="u-label u-text-grey-80 u-label-4">Прорабатываемая группа мышц</label>
-                <div class="u-form-select-wrapper">
-                  <select id="select-9bba" name="select-9bba" class="u-grey-5 u-input u-input-rectangle u-radius u-input-4">
-                    <option value="Плечевые мышцы" data-calc="">Плечевые мышцы</option>
-                    <option value="Мышцы рук" data-calc="">Мышцы рук</option>
-                    <option value="Грудные мышцы" data-calc="">Грудные мышцы</option>
-                    <option value="Мышцы пресса" data-calc="">Мышцы пресса</option>
-                    <option value="Мышцы спины" data-calc="">Мышцы спины</option>
-                    <option value="Мышцы ног" data-calc="">Мышцы ног</option>
-                  </select>
-                  <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
-                </div>
-              </div>
-              <div class="u-form-group u-form-select u-form-group-5">
-                <label for="select-b0fa" class="u-label u-text-grey-80 u-label-5">Используемое оборудование</label>
-                <div class="u-form-select-wrapper">
-                  <select id="select-b0fa" name="select-b0fa" class="u-grey-5 u-input u-input-rectangle u-radius u-input-5">
-                    <option value="Собственный вес" data-calc="">Собственный вес</option>
-                    <option value="Штанга" data-calc="">Штанга</option>
-                    <option value="Гантели" data-calc="">Гантели</option>
-                    <option value="Фитнес резинка" data-calc="">Фитнес резинка</option>
-                  </select>
-                  <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
-                </div>
-              </div>
-              <div class="u-align-center u-form-group u-form-submit">
-                  <a class="u-button-style u-nav-link u-active-grey-70 u-border-none u-btn u-btn-round u-button-style u-grey-80 u-hover-grey-75 u-radius u-btn-1">Создать тренировку</a>
-                <input type="submit" value="submit" class="u-form-control-hidden" wfd-invisible="true">
-              </div>
-            </form>
-          </div>
-        </div><button class="u-dialog-close-button u-icon u-text-grey-40 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-efe9"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-efe9"><rect x="7" y="0" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="2" height="16"></rect><rect x="0" y="7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="16" height="2"></rect></svg></button>
-      </div>
-    </section>
-
-      <script>
-    document.getElementById('create-workout-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Предотвратить стандартную отправку формы
-
-        const formData = new FormData(this);
-        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-        fetch("{% url 'view_exercises' %}", {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': csrfToken,
-            },
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Перенаправление на страницу добавления упражнений
-                window.location.href = data.redirect_url;
-            } else {
-                // Показать ошибку
-                alert(data.error);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Произошла ошибка. Попробуйте снова.');
-        });
-    });
-    </script>
-
-    <style>.u-dialog-section-7 .u-image-1 {
-  width: 800px;
-  min-height: 250px;
-  background-image: url("/static/images/top-view-weights-with-water-bottle-copy-space.jpg"), url("https://images.unsplash.com/photo-1676312834443-06c9ec87c8f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzgzNjl8MHwxfHNlYXJjaHw3M3x8ZHVtYmJlbGxzfGVufDB8fHx8MTczMjEzNTAwNHww&ixlib=rb-4.0.3&q=80&w=1080");
-  background-position: 23.21% 50%, 50% 50%;
-  background-size: cover, cover;
-  margin: 60px auto;
-}
-
-.u-dialog-section-7 .u-container-layout-1 {
-  padding: 30px;
-}
-
-.u-dialog-section-7 .u-form-1 {
-  height: 488px;
-  width: 430px;
-  margin: 0 auto;
-}
-
-.u-dialog-section-7 .u-label-1 {
-  font-weight: 700;
-  font-size: 1.125rem;
-}
-
-.u-dialog-section-7 .u-input-1 {
-  font-size: 1.25rem;
-  --radius: 15px;
-}
-
-.u-dialog-section-7 .u-form-group-2 {
-  margin-left: 0;
-}
-
-.u-dialog-section-7 .u-label-2 {
-  font-weight: 700;
-  font-size: 1.125rem;
-}
-
-.u-dialog-section-7 .u-input-2 {
-  font-size: 1.25rem;
-  --radius: 15px;
-}
-
-.u-dialog-section-7 .u-form-group-3 {
-  margin-left: 0;
-}
-
-.u-dialog-section-7 .u-label-3 {
-  font-weight: 700;
-  font-size: 1.125rem;
-}
-
-.u-dialog-section-7 .u-input-3 {
-  font-size: 1.25rem;
-  --radius: 15px;
-}
-
-.u-dialog-section-7 .u-form-group-4 {
-  margin-left: 0;
-}
-
-.u-dialog-section-7 .u-label-4 {
-  font-weight: 700;
-  font-size: 1.125rem;
-}
-
-.u-dialog-section-7 .u-input-4 {
-  font-size: 1.25rem;
-  --radius: 15px;
-}
-
-.u-dialog-section-7 .u-form-group-5 {
-  margin-left: 0;
-}
-
-.u-dialog-section-7 .u-label-5 {
-  font-weight: 700;
-  font-size: 1.125rem;
-}
-
-.u-dialog-section-7 .u-input-5 {
-  font-size: 1.25rem;
-  --radius: 15px;
-}
-
-.u-dialog-section-7 .u-btn-1 {
-  background-image: none;
-  border-style: none;
-  font-size: 1.125rem;
-  text-transform: uppercase;
-  --radius: 30px;
-  padding-left: 43px;
-  padding-right: 43px;
-}
-
-.u-dialog-section-7 .u-icon-1 {
-  width: 20px;
-  height: 20px;
-}
-
-@media (max-width: 991px) {
-  .u-dialog-section-7 .u-image-1 {
-    width: 720px;
-  }
-}
-
-@media (max-width: 767px) {
-  .u-dialog-section-7 .u-image-1 {
-    width: 540px;
-  }
-
-  .u-dialog-section-7 .u-container-layout-1 {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-}
-
-@media (max-width: 575px) {
-  .u-dialog-section-7 .u-image-1 {
-    width: 340px;
-  }
-
-  .u-dialog-section-7 .u-form-1 {
-    width: 320px;
-  }
-}</style> -->
-
-<section class="u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-valign-middle u-dialog-section-8" id="Тренировки-AI">
+  
+<section class="u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-valign-middle u-dialog-section-8" id="WorkoutAI-modal">
+   
   <div class="u-align-center u-container-align-center u-container-style u-dialog u-image u-image-1" data-image-width="7304" data-image-height="4227">
+    
+    
     <div class="u-container-layout u-valign-top u-container-layout-2">
+      <button class="close u-dialog-close-button u-icon u-text-grey-40 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-efe9"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-efe9"><rect x="7" y="0" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="2" height="16"></rect><rect x="0" y="7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="16" height="2"></rect></svg></button>
       <div class="u-form u-form-2">
-        <form class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 0px;" source="email" name="form">
+        
+        <div class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" style="padding: 0px;" source="email" name="form">
+          
           <div class="u-form-group u-form-select u-form-group-9">
-            <label for="select-9bba" class="u-label u-text-grey-80 u-label-9">Прорабатываемая группа мышц</label>
+            <label for="muscle" class="u-label u-text-grey-80 u-label-9">Прорабатываемая группа мышц</label>
             <div class="u-form-select-wrapper">
-              <select id="select-9bba" name="muscle_group_work" class="u-grey-5 u-input u-input-rectangle u-radius u-input-9">
-                <option value="Плечевые мышцы" data-calc="">Плечевые мышцы</option>
+              <select id="muscle" name="muscle" class="u-grey-5 u-input u-input-rectangle u-radius u-input-9">
+                <option value="Мышцы плеча" data-calc="">Плечевые мышцы</option>
                 <option value="Мышцы рук" data-calc="">Мышцы рук</option>
-                <option value="Грудные мышцы" data-calc="">Грудные мышцы</option>
+                <option value="Грудные мыщцы" data-calc="">Грудные мышцы</option>
                 <option value="Мышцы пресса" data-calc="">Мышцы пресса</option>
                 <option value="Мышцы спины" data-calc="">Мышцы спины</option>
                 <option value="Мышцы ног" data-calc="">Мышцы ног</option>
@@ -363,7 +159,7 @@
               <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
             </div>
           </div>
-          <div class="u-form-group u-form-select u-form-group-10">
+          <!-- <div class="u-form-group u-form-select u-form-group-10">
             <label for="select-b0fa" class="u-label u-text-grey-80 u-label-10">Используемое оборудование</label>
             <div class="u-form-select-wrapper">
               <select id="select-b0fa" name="equipment" class="u-grey-5 u-input u-input-rectangle u-radius u-input-10">
@@ -374,16 +170,90 @@
               </select>
               <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve"><polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
             </div>
+          </div> -->
+          <div class="u-form-checkbox-group u-form-group u-form-group-11">
+            <label class="u-label u-text-grey-80 u-label-9" for="equipments">Используемое оборудование</label>
+            <div class="u-form-checkbox-group-wrapper" name="equipments" id="equipments">
+              <div class="u-input-row">
+                <input id="own_weight" type="checkbox" name="equipments" value="Со своим весом" class="u-active-palette-2-base u-field-input u-hover-palette-2-light-1 u-palette-2-base u-radius" checked="checked" data-calc="" style="--radius: 4px;">
+                <label class="u-field-label" for="own_weight">Собственный вес</label>
+              </div>
+              <div class="u-input-row">
+                <input id="barbell" type="checkbox" name="equipments" value="Со штангой" class="u-active-palette-2-base u-field-input u-hover-palette-2-light-1 u-palette-2-base u-radius" data-calc="" style="--radius: 4px;">
+                <label class="u-field-label" for="barbell">Штанга</label>
+              </div>
+              <div class="u-input-row">
+                <input id="dumbbells" type="checkbox" name="equipments" value="С гантелями" class="u-active-palette-2-base u-field-input u-hover-palette-2-light-1 u-palette-2-base u-radius" data-calc="" style="--radius: 4px;">
+                <label class="u-field-label" for="dumbbells">Гантели</label>
+              </div>
+              <div class="u-input-row">
+                <input id="rubber_loops" type="checkbox" name="equipments" value="С резиновыми петлями" class="u-active-palette-2-base u-field-input u-hover-palette-2-light-1 u-palette-2-base u-radius" style="--radius: 4px;" data-calc="">
+                <label class="u-field-label" for="rubber_loops">Резиновые петли</label>
+              </div>
+              <div class="u-input-row">
+                <input id="rubber" type="checkbox" name="equipments" value="С резиной" class="u-active-palette-2-base u-field-input u-hover-palette-2-light-1 u-palette-2-base u-radius" style="--radius: 4px;" data-calc="">
+                <label class="u-field-label" for="rubber">Резина</label>
+              </div>
+              <div class="u-input-row">
+                <input id="fitness_rubber_band" type="checkbox" name="equipments" value="С фитнес-резинкой" class="u-active-palette-2-base u-field-input u-hover-palette-2-light-1 u-palette-2-base u-radius" style="--radius: 4px;" data-calc="">
+                <label class="u-field-label" for="fitness_rubber_band">Фитнес-резинка</label>
+              </div>
+              <div class="u-input-row">
+                <input id="horizontal_bar" type="checkbox" name="equipments" value="На турнике" class="u-active-palette-2-base u-field-input u-hover-palette-2-light-1 u-palette-2-base u-radius" style="--radius: 4px;" data-calc="">
+                <label class="u-field-label" for="horizontal_bar">Турник</label>
+              </div>
+              <div class="u-input-row">
+                <input id="bars" type="checkbox" name="equipments" value="На брусьях" class="u-active-palette-2-base u-field-input u-hover-palette-2-light-1 u-palette-2-base u-radius" style="--radius: 4px;" data-calc="">
+                <label class="u-field-label" for="bars">Брусья</label>
+              </div>
+            </div>
           </div>
-          <div class="u-align-center u-form-group u-form-submit">
-              <a  class="u-button-style u-nav-link u-active-grey-70 u-border-none u-btn u-btn-round u-button-style u-grey-80 u-hover-grey-75 u-radius u-btn-2">Сгенерировать тренировку </a>
-            <input type="submit" value="submit" class="u-form-control-hidden" wfd-invisible="true">
-          </div>
-        </form>
+        </div>
+        <div class="u-align-center u-form-group u-form-submit">
+          <button onclick="addInfoAboutWorkout()"  class="u-button-style u-nav-link u-active-grey-70 u-border-none u-btn u-btn-round u-button-style u-grey-80 u-hover-grey-75 u-radius u-btn-2">Сгенерировать тренировку </button>
+          <div id="loader">
+            <div class="spinner"></div>
+            
+        </div>
       </div>
-    </div><button class="u-dialog-close-button u-icon u-text-grey-40 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-efe9"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-efe9"><rect x="7" y="0" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="2" height="16"></rect><rect x="0" y="7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="16" height="2"></rect></svg></button>
+      </div>
+          
+        </div>
+      </div>
+    </div> <!-- <span class="close u-dialog-close-button u-icon u-text-grey-40 u-icon-1">&times;</span> -->
   </div>
-  <style>.u-dialog-section-8 .u-image-1 {
+
+ 
+
+  <style>
+  #loader {
+            display: none; /* Скрываем loader по умолчанию */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+           
+        }
+        .spinner {
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-top: 8px solid #000; /* Blue */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+  .u-dialog-section-8 .u-image-1 {
     width: 800px;
     min-height: 250px;
     background-image: url("/static/images/top-view-weights-with-water-bottle-copy-space.jpg"), url("https://images.unsplash.com/photo-1676312834443-06c9ec87c8f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzgzNjl8MHwxfHNlYXJjaHw3M3x8ZHVtYmJlbGxzfGVufDB8fHx8MTczMjEzNTAwNHww&ixlib=rb-4.0.3&q=80&w=1080");
@@ -510,4 +380,75 @@
       width: 320px;
     }
   }</style>  
-</section>
+</div>
+<script>
+  function showWorkoutAIModalWindow() {
+  const modal = document.getElementById('WorkoutAI-modal');
+  modal.style.display = 'block';
+}
+
+function addInfoAboutWorkout() {
+ 
+  const muscle = document.getElementById('muscle').value;
+
+  const formData = new FormData();
+  formData.append('muscle', muscle);
+  
+  document.querySelectorAll('input[name="equipments"]:checked').forEach(checkbox => {
+      formData.append('equipments', checkbox.value);
+  });
+
+  document.getElementById('loader').style.display = 'block';
+  
+  fetch('{% url "generate_workout" %}', {
+      method: 'POST',
+      body: formData,
+      headers: {
+          'X-CSRFToken': getCookie('csrftoken')
+      }
+  })
+  .then(response => response.json())
+  .then(data => {
+      if(data.status === 'success') {
+          document.getElementById('WorkoutAI-modal').style.display = 'none';
+          // Clear modal inputs
+          document.getElementById('musle').value = '';
+          document.querySelectorAll('input[name="equipments"]:checked').forEach(checkbox => {
+              checkbox.checked = false;
+          });
+      }
+  })
+  .finally(() => {
+                // Скрыть loader после завершения
+                document.getElementById('loader').style.display = 'none';
+            });
+}
+
+// Close modal when clicking on X or outside the modal
+document.querySelector('.close').onclick = function() {
+  document.getElementById('WorkoutAI-modal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+  const modal = document.getElementById('WorkoutAI-modal');
+  if (event.target == modal) {
+      modal.style.display = 'none';
+  }
+}
+
+// Function to get CSRF token from cookies
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return cookieValue;
+}
+</script>

@@ -40,7 +40,6 @@ def update_workout(request, workout_id):
         workout.name = request.POST.get('name')
         workout.description = request.POST.get('description')
         workout.difficulty_level = request.POST.get('difficulty_level')
-        workout.duration_minutes = request.POST.get('duration_minutes')
         workout.save()
         return JsonResponse({'status': 'success'})
 

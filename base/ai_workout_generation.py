@@ -5,7 +5,7 @@ import json
 from .models import Exercise, Workout, UserProfile, WorkoutExercise
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-
+from django.http import JsonResponse
 genai.configure(api_key='AIzaSyAHcj6-yuym_aFmj10WVIZdNH9VTYWBCAY')
 model = genai.GenerativeModel('gemini-pro')
 
@@ -13,12 +13,15 @@ model = genai.GenerativeModel('gemini-pro')
 def generate_workout(request):
     if request.method == 'POST':
         selected_equipments = request.POST.getlist('equipments')
-        selected_muscles = request.POST.getlist('muscles')
+        selected_muscle = request.POST.get('muscle')
+        print(selected_equipments, selected_muscle)
+        print("Available equipment values:", list(Exercise.objects.values_list('equipment', flat=True).distinct()))
+        print("Available muscle groups:", list(Exercise.objects.values_list('muscle_group', flat=True).distinct()))
         for selected_equipment in selected_equipments:
-    
+            print(selected_equipment)
             available_exercises = Exercise.objects.filter(
-                equipment__in=[selected_equipment],
-                muscle_group__in=selected_muscles
+                equipment=selected_equipment,
+                muscle_group=selected_muscle
             )
             print(available_exercises)
             if available_exercises:
@@ -108,7 +111,7 @@ def generate_workout(request):
                     workout = Workout.objects.create(
                         name=workout_data['workout_name'],
                         description=workout_data['workout_description'],
-                        musle_group=', '.join(selected_muscles),
+                        musle_group=selected_muscle,
                         equipment=selected_equipment,
                         difficulty_level=3,
                         created_by=request.user
@@ -139,12 +142,14 @@ def generate_workout(request):
                         'error': f"Ошибка: {str(e)}\nОтвет API: {response.text}",
                         'success': False
                     })
+                
+        return JsonResponse({'status': 'success'})
             
-    equipment_choices = Exercise.objects.values_list('equipment', flat=True).distinct()
-    muscle_choices = Exercise.objects.values_list('muscle_group', flat=True).distinct()
+    # equipment_choices = Exercise.objects.values_list('equipment', flat=True).distinct()
+    # muscle_choices = Exercise.objects.values_list('muscle_group', flat=True).distinct()
     
-    return render(request, 'generate_workout.html', {
-        'equipment_choices': equipment_choices,
-        'muscle_choices': muscle_choices
-    })
+    # return render(request, 'generate_workout.html', {
+    #     'equipment_choices': equipment_choices,
+    #     'muscle_choices': muscle_choices
+    # })
         

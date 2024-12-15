@@ -53,6 +53,7 @@
     --animation-custom_in-opacity: 0;
     --animation-custom_in-rotate: 0deg;
     --animation-custom_in-scale: 0.3;
+    cursor: pointer;
   }
   
   .u-section-1 .u-container-layout-2 {
