@@ -44229,7 +44229,7 @@ a.u-link.u-text-hover-grey-90:hover {
 .u-header .u-icon-2 {
   width: 29px;
   height: 29px;
-  margin: 150px 1px 0 0;
+  margin: 75px 1px 0 0;
   padding: 0;
 }
 
@@ -44274,6 +44274,14 @@ a.u-link.u-text-hover-grey-90:hover {
   margin: 43px 1px 0 0;
   padding: 0;
 }
+
+.u-header .u-icon-9 {
+  width: 29px;
+  height: 29px;
+  margin: 51px 1px 0 0;
+  padding: 0;
+}
+
 @media (max-width: 1199px) {
   .u-header .u-image-1 {
     margin-left: 39px;

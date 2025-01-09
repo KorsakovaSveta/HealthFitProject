@@ -29,7 +29,7 @@ def edit_workout(request, workout_id):
     
     return render(request, 'edit_workout.html', {
         'workout': workout,
-        'exercises': exercises,
+        'exercises': exercises[:20],
         'workout_exercises': workout_exercises
     })
 

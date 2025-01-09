@@ -50,10 +50,14 @@ def add_exercise_to_workout(request):
             order=order,
             calories=int(sets)*int(reps)*exercise.calories
         )
-        workout_exercises = WorkoutExercise.objects.filter(order__gte=new_exercise_in_workout.order)
-        for workout_exercise in workout_exercises[1:]:
-            workout_exercise.order = workout_exercise.order+1
-            workout_exercise.save()
+        # workout_exercises = WorkoutExercise.objects.filter(workout=new_exercise_in_workout.workout).order_by('order')
+        # for workout_exercise in workout_exercises:
+        #     print(workout_exercise.exercise)
+        # if new_exercise_in_workout.order == workout_exercises[int(new_exercise_in_workout.order)].order:
+            
+        #     for workout_exercise in workout_exercises[int(new_exercise_in_workout.order):]:
+        #         workout_exercise.order = workout_exercise.order+1
+        #         workout_exercise.save()
         return JsonResponse({'status': 'success'})
 
 # @login_required

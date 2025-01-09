@@ -2,10 +2,12 @@
 import google.generativeai as genai
 # views.py
 import json
-from .models import Exercise, Workout, UserProfile, WorkoutExercise
+from .models import Exercise, Workout, UserProfile, WorkoutExercise, WorkoutLog
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import JsonResponse
+import datetime
+
 genai.configure(api_key='AIzaSyAHcj6-yuym_aFmj10WVIZdNH9VTYWBCAY')
 model = genai.GenerativeModel('gemini-pro')
 
@@ -50,7 +52,7 @@ def generate_workout(request):
                 Доступные упражнения: {json.dumps(exercises_data, ensure_ascii=False)}
                 
                 Создай план тренировки по следующим правилам:
-                1. Выбери 8-15 упражнений из списка доступных упражнений
+                1. Выбери 6-8 упражнений из списка доступных упражнений
                 2. Используй только точные названия упражнений из предоставленного списка
                 3. План должен соответствовать следующей структуре JSON:
                 {{
@@ -152,4 +154,4 @@ def generate_workout(request):
     #     'equipment_choices': equipment_choices,
     #     'muscle_choices': muscle_choices
     # })
-        
+

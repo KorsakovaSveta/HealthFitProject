@@ -13,9 +13,10 @@ def choose_mealgroup(request):
     total_carb = UserFood.objects.filter(user=request.user).aggregate(total_carb=Sum('carb'))['total_carb']
     total_water = Water.objects.filter(user=request.user).aggregate(total_water=Sum('water'))['total_water']
     targer_nutritions = TargetNutrition.objects.filter(user=request.user).order_by('id').last()
-
+    if total_water != None:
+        total_water = total_water / 1000
     print(total_kcal)
-    return render(request, 'dairy.html', {'meal_groups': meal_groups, 'kcal': total_kcal, 'protein': total_protein, 'fat': total_fat, 'carb': total_carb, 'water': total_water / 1000, 'targer_nutritions': targer_nutritions})
+    return render(request, 'dairy.html', {'meal_group_1': meal_groups[0], 'meal_group_2': meal_groups[1], 'meal_group_3': meal_groups[2], 'meal_group_4': meal_groups[3], 'kcal': total_kcal, 'protein': round(total_protein,1), 'fat': round(total_fat,1), 'carb': round(total_carb,1), 'water': total_water, 'targer_nutritions': targer_nutritions})
 
 @login_required
 def search_and_add_product(request, mealgroup_id):
@@ -35,10 +36,10 @@ def search_and_add_product(request, mealgroup_id):
             product = get_object_or_404(Products, id=product_id)
         
             # Расчет питательных веществ
-            kcal = (product.kcal_per_100g * gramming) / 100
-            protein = (product.protein_per_100g * gramming) / 100
-            fat = (product.fat_per_100g * gramming) / 100
-            carb = (product.carb_per_100g * gramming) / 100
+            kcal = round((product.kcal_per_100g * gramming) / 100, 1)
+            protein = round((product.protein_per_100g * gramming) / 100, 1)
+            fat = round((product.fat_per_100g * gramming) / 100, 1)
+            carb = round((product.carb_per_100g * gramming) / 100, 1)
 
             # Создание записи в UserFood
             UserFood.objects.create(

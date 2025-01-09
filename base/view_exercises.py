@@ -7,4 +7,4 @@ from .models import Exercise, Workout, WorkoutExercise
 def view_exercises(request):
    
     exercises = Exercise.objects.all()
-    return render(request, 'Тренировки copy.html', {'exercises': exercises})
+    return render(request, 'Тренировки copy.html', {'exercises': exercises[:20]})
